@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+package asignacion;
+
+option go_package = "./proto";
+
+service ServicioAsignacion {
+  rpc EnviarEmergencia (EmergenciaRequest) returns (Respuesta);
+}
+
+message Emergencia {
+  string name = 1;
+  int32 latitude = 2;
+  int32 longitude = 3;
+  int32 magnitude = 4;
+}
+
+message EmergenciaRequest {
+  repeated Emergencia emergencias = 1;
+}
+
+message Respuesta {
+  string mensaje = 1;
+}
