@@ -2,17 +2,17 @@ syntax = "proto3";
 
 package monitoreo;
 
-option go_package = "./proto";
-
-service ServicioMonitoreo {
-  rpc StreamActualizaciones (ClienteInfo) returns (stream EstadoEmergencia);
-}
+option go_package = "proto";
 
 message ClienteInfo {
-  string cliente_id = 1;
+    string cliente_id = 1;
 }
 
 message EstadoEmergencia {
-  string nombre = 1;
-  string status = 2;
+    string nombre = 1;
+    string status = 2;
+}
+
+service ServicioMonitoreo {
+    rpc StreamActualizaciones (ClienteInfo) returns (stream EstadoEmergencia);
 }

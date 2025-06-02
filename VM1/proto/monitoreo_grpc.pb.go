@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.21.12
-// source: proto/monitoreo.proto
+// source: monitoreo.proto
 
 package proto
 
@@ -120,5 +120,5 @@ var ServicioMonitoreo_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "proto/monitoreo.proto",
+	Metadata: "monitoreo.proto",
 }

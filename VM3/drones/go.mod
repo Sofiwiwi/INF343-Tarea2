@@ -1,4 +1,4 @@
-module monitoreo
+module dron
 
 go 1.23.9
 

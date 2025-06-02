@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v3.21.12
-// source: proto/asignacion.proto
+// source: asignacion.proto
 
 package proto
 
@@ -33,7 +33,7 @@ type Emergencia struct {
 
 func (x *Emergencia) Reset() {
 	*x = Emergencia{}
-	mi := &file_proto_asignacion_proto_msgTypes[0]
+	mi := &file_asignacion_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +45,7 @@ func (x *Emergencia) String() string {
 func (*Emergencia) ProtoMessage() {}
 
 func (x *Emergencia) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_asignacion_proto_msgTypes[0]
+	mi := &file_asignacion_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +58,7 @@ func (x *Emergencia) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Emergencia.ProtoReflect.Descriptor instead.
 func (*Emergencia) Descriptor() ([]byte, []int) {
-	return file_proto_asignacion_proto_rawDescGZIP(), []int{0}
+	return file_asignacion_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *Emergencia) GetName() string {
@@ -98,7 +98,7 @@ type EmergenciaRequest struct {
 
 func (x *EmergenciaRequest) Reset() {
 	*x = EmergenciaRequest{}
-	mi := &file_proto_asignacion_proto_msgTypes[1]
+	mi := &file_asignacion_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -110,7 +110,7 @@ func (x *EmergenciaRequest) String() string {
 func (*EmergenciaRequest) ProtoMessage() {}
 
 func (x *EmergenciaRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_asignacion_proto_msgTypes[1]
+	mi := &file_asignacion_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,7 +123,7 @@ func (x *EmergenciaRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use EmergenciaRequest.ProtoReflect.Descriptor instead.
 func (*EmergenciaRequest) Descriptor() ([]byte, []int) {
-	return file_proto_asignacion_proto_rawDescGZIP(), []int{1}
+	return file_asignacion_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *EmergenciaRequest) GetEmergencias() []*Emergencia {
@@ -142,7 +142,7 @@ type Respuesta struct {
 
 func (x *Respuesta) Reset() {
 	*x = Respuesta{}
-	mi := &file_proto_asignacion_proto_msgTypes[2]
+	mi := &file_asignacion_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -154,7 +154,7 @@ func (x *Respuesta) String() string {
 func (*Respuesta) ProtoMessage() {}
 
 func (x *Respuesta) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_asignacion_proto_msgTypes[2]
+	mi := &file_asignacion_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -167,7 +167,7 @@ func (x *Respuesta) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Respuesta.ProtoReflect.Descriptor instead.
 func (*Respuesta) Descriptor() ([]byte, []int) {
-	return file_proto_asignacion_proto_rawDescGZIP(), []int{2}
+	return file_asignacion_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Respuesta) GetMensaje() string {
@@ -177,11 +177,11 @@ func (x *Respuesta) GetMensaje() string {
 	return ""
 }
 
-var File_proto_asignacion_proto protoreflect.FileDescriptor
+var File_asignacion_proto protoreflect.FileDescriptor
 
-const file_proto_asignacion_proto_rawDesc = "" +
+const file_asignacion_proto_rawDesc = "" +
 	"\n" +
-	"\x16proto/asignacion.proto\x12\n" +
+	"\x10asignacion.proto\x12\n" +
 	"asignacion\"x\n" +
 	"\n" +
 	"Emergencia\x12\x12\n" +
@@ -197,24 +197,24 @@ const file_proto_asignacion_proto_rawDesc = "" +
 	"\x10EnviarEmergencia\x12\x1d.asignacion.EmergenciaRequest\x1a\x15.asignacion.RespuestaB\tZ\a./protob\x06proto3"
 
 var (
-	file_proto_asignacion_proto_rawDescOnce sync.Once
-	file_proto_asignacion_proto_rawDescData []byte
+	file_asignacion_proto_rawDescOnce sync.Once
+	file_asignacion_proto_rawDescData []byte
 )
 
-func file_proto_asignacion_proto_rawDescGZIP() []byte {
-	file_proto_asignacion_proto_rawDescOnce.Do(func() {
-		file_proto_asignacion_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_asignacion_proto_rawDesc), len(file_proto_asignacion_proto_rawDesc)))
+func file_asignacion_proto_rawDescGZIP() []byte {
+	file_asignacion_proto_rawDescOnce.Do(func() {
+		file_asignacion_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_asignacion_proto_rawDesc), len(file_asignacion_proto_rawDesc)))
 	})
-	return file_proto_asignacion_proto_rawDescData
+	return file_asignacion_proto_rawDescData
 }
 
-var file_proto_asignacion_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
-var file_proto_asignacion_proto_goTypes = []any{
+var file_asignacion_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_asignacion_proto_goTypes = []any{
 	(*Emergencia)(nil),        // 0: asignacion.Emergencia
 	(*EmergenciaRequest)(nil), // 1: asignacion.EmergenciaRequest
 	(*Respuesta)(nil),         // 2: asignacion.Respuesta
 }
-var file_proto_asignacion_proto_depIdxs = []int32{
+var file_asignacion_proto_depIdxs = []int32{
 	0, // 0: asignacion.EmergenciaRequest.emergencias:type_name -> asignacion.Emergencia
 	1, // 1: asignacion.ServicioAsignacion.EnviarEmergencia:input_type -> asignacion.EmergenciaRequest
 	2, // 2: asignacion.ServicioAsignacion.EnviarEmergencia:output_type -> asignacion.Respuesta
@@ -225,26 +225,26 @@ var file_proto_asignacion_proto_depIdxs = []int32{
 	0, // [0:1] is the sub-list for field type_name
 }
 
-func init() { file_proto_asignacion_proto_init() }
-func file_proto_asignacion_proto_init() {
-	if File_proto_asignacion_proto != nil {
+func init() { file_asignacion_proto_init() }
+func file_asignacion_proto_init() {
+	if File_asignacion_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_asignacion_proto_rawDesc), len(file_proto_asignacion_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_asignacion_proto_rawDesc), len(file_asignacion_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_proto_asignacion_proto_goTypes,
-		DependencyIndexes: file_proto_asignacion_proto_depIdxs,
-		MessageInfos:      file_proto_asignacion_proto_msgTypes,
+		GoTypes:           file_asignacion_proto_goTypes,
+		DependencyIndexes: file_asignacion_proto_depIdxs,
+		MessageInfos:      file_asignacion_proto_msgTypes,
 	}.Build()
-	File_proto_asignacion_proto = out.File
-	file_proto_asignacion_proto_goTypes = nil
-	file_proto_asignacion_proto_depIdxs = nil
+	File_asignacion_proto = out.File
+	file_asignacion_proto_goTypes = nil
+	file_asignacion_proto_depIdxs = nil
 }

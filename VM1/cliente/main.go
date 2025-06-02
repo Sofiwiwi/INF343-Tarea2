@@ -43,7 +43,7 @@ func leerJSON(path string) ([]*pb.Emergencia, error) {
 }
 
 func enviarEmergencias(emergencias []*pb.Emergencia) {
-    conn, err := grpc.Dial("10.10.28.XX:50051", grpc.WithInsecure())
+    conn, err := grpc.Dial("localhost:50051", grpc.WithInsecure())
     if err != nil {
         log.Fatalf("No se pudo conectar al servicio de asignación: %v", err)
     }
