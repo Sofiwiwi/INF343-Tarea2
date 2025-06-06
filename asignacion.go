@@ -20,8 +20,8 @@ import (
 
 	amqp "github.com/rabbitmq/amqp091-go"
 
-	dronepb "github.com/INF343-Tarea2/proto/drones" // Reemplaza con el nombre de tu módulo Go
-	pb "github.com/INF343-Tarea2/proto/emergencia"  // Reemplaza con el nombre de tu módulo Go
+	dronepb "INF343-Tarea2/proto/drones"
+	pb "INF343-Tarea2/proto/emergencia"
 )
 
 const (
@@ -33,7 +33,7 @@ const (
 	registrationQueue     = "emergency_registration_queue"
 	droneUpdatesQueue     = "drone_updates_queue" // Cola que el monitoreo consume
 	assignmentPort        = ":50051"
-	dronesServiceAddress  = "localhost:50053" // Dirección del servicio de Drones
+	dronesServiceAddress  = "10.10.28.19:50053" // Dirección del servicio de Drones
 )
 
 // Drone representa la estructura de un dron en la base de datos

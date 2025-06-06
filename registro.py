@@ -9,7 +9,7 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # --- Configuración de Conexión ---
-RABBITMQ_URL = 'amqp://guest:guest@localhost:5672/'
+RABBITMQ_URL = 'amqp://guest:guest@10.10.28.18:5672/'
 MONGO_DB_URI = 'mongodb://localhost:27017/'
 DB_NAME = 'emergencies_db'
 EMERGENCIES_COLLECTION = 'emergencies'

@@ -15,10 +15,9 @@ import (
 	"google.golang.org/protobuf/types/known/timestamppb"
 
 	// Importa los paquetes gRPC generados a partir de los .proto
-	// Asegúrate de que estos paths coincidan con tu estructura de directorios y el 'go_package' en los .proto
-	pb "github.com/INF343-Tarea2/proto/emergencia" // Reemplaza 'your_module_name' con el nombre de tu módulo Go
-
-	monpb "github.com/INF343-Tarea2/proto/monitoreo" // Reemplaza 'your_module_name' con el nombre de tu módulo Go
+	// Asegúrate de que estos paths coincidan con tu estructura de directorios, el nombre de tu módulo Go y el 'go_package' en los .proto
+	pb "INF343-Tarea2/proto/emergencia"
+	monpb "INF343-Tarea2/proto/monitoreo"
 )
 
 // Emergency es la estructura para parsear el archivo JSON de emergencias
@@ -49,7 +48,7 @@ func main() {
 
 	// Dirección del Servicio de Asignación (MV2)
 	// En un entorno real, esta dirección debería ser configurable o descubrirse
-	assignmentServiceAddress := "localhost:50051"
+	assignmentServiceAddress := "10.10.28.18:50051"
 	connAssignment, err := grpc.Dial(assignmentServiceAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
 		log.Fatalf("No se pudo conectar al Servicio de Asignación en %s: %v", assignmentServiceAddress, err)

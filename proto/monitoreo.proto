@@ -2,7 +2,7 @@ syntax = "proto3";
 
 // Define el paquete Go donde se generará el código.
 // Reemplaza 'your_module_name' con el nombre real de tu módulo Go (e.g., github.com/Sofiwiwi/INF343-Tarea2)
-option go_package = "your_module_name/proto/monitoreo";
+option go_package = "/proto/monitoreo";
 
 package monitoreo;
 

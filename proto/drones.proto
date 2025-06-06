@@ -1,8 +1,8 @@
 syntax = "proto3";
 
 // Define el paquete Go donde se generará el código.
-// Reemplaza 'your_module_name' con el nombre real de tu módulo Go (e.g., github.com/Sofiwiwi/INF343-Tarea2)
-option go_package = "your_module_name/proto/drones";
+// Usa el nombre real de tu módulo Go (INF343-Tarea2) seguido de la ruta al paquete.
+option go_package = "INF343-Tarea2/proto/drones";
 
 package drones;
 
