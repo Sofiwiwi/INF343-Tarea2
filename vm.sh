@@ -20,9 +20,10 @@ case "$VM" in
   1)
     echo "🖥️ VM1: Ejecutando Monitoreo y luego Cliente"
     echo "Iniciando monitoreo..."
+    go build cliente.go
     go run monitor.go
     echo "Iniciando cliente..."
-    go run cliente.go emergencias.json
+    ./cliente.go emergencias.json
     ;;
   2)
     echo "🖥️ VM2: Ejecutando Asignación y luego Registro de emergencias"
@@ -35,6 +36,8 @@ case "$VM" in
     echo "🖥️ VM3: Ejecutando Drones"
     go run drones.go
     ;;
+  4)
+
   *)
     echo "⚠️ Número de VM no reconocido: $VM"
     echo "Opciones válidas:"
