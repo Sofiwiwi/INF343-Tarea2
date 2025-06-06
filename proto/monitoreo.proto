@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+// Define el paquete Go donde se generará el código.
+// Reemplaza 'your_module_name' con el nombre real de tu módulo Go (e.g., github.com/Sofiwiwi/INF343-Tarea2)
+option go_package = "your_module_name/proto/monitoreo";
+
+package monitoreo;
+
+import "google/protobuf/timestamp.proto";
+
+// Mensaje para una actualización de estado de emergencia
+message EmergencyStatusUpdate {
+    int64 emergency_id = 1;     // ID de la emergencia
+    string emergency_name = 2;   // Nombre de la emergencia
+    string status = 3;           // Estado actual (e.g., "En curso", "Extinguido", "En camino")
+    string dron_id = 4;          // ID del dron asignado
+    double latitude = 5;         // Latitud actual de la emergencia (o del dron si es relevante)
+    double longitude = 6;        // Longitud actual de la emergencia (o del dron si es relevante)
+    int32 magnitude = 7;         // Magnitud de la emergencia
+    google.protobuf.Timestamp timestamp = 8; // Momento de la actualización
+}
+
+// Solicitud para suscribirse a actualizaciones
+message SubscriptionRequest {
+    // Podría contener filtros si fuera necesario (e.g., id de emergencia)
+}
+
+// Servicio gRPC para la comunicación con el Servicio de Monitoreo
+service MonitoreoService {
+    // Stream del lado del servidor para enviar actualizaciones al cliente
+    rpc SubscribeToUpdates(SubscriptionRequest) returns (stream EmergencyStatusUpdate);
+}

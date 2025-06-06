@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+// Define el paquete Go donde se generará el código.
+// Reemplaza 'your_module_name' con el nombre real de tu módulo Go (e.g., github.com/Sofiwiwi/INF343-Tarea2)
+option go_package = "your_module_name/proto/drones";
+
+package drones;
+
+import "google/protobuf/timestamp.proto"; // Necesario para usar Timestamp
+
+// Solicitud de asignación de emergencia de Asignación a Drones
+message AssignEmergencyRequest {
+    int64 emergency_id = 1;
+    string emergency_name = 2;
+    double latitude = 3;
+    double longitude = 4;
+    int32 magnitude = 5;
+    string dron_id = 6;
+    google.protobuf.Timestamp assignment_time = 7;
+}
+
+// Respuesta de asignación de emergencia de Drones a Asignación
+message AssignEmergencyResponse {
+    bool success = 1;
+    string message = 2;
+}
+
+// Servicio gRPC para la comunicación con el Servicio de Drones (desde Asignación)
+service DronesService {
+    rpc AssignEmergency(AssignEmergencyRequest) returns (AssignEmergencyResponse);
+}
