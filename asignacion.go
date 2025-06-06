@@ -11,6 +11,8 @@ import (
 	"sync"
 	"time"
 
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
+
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -33,7 +35,7 @@ const (
 	registrationQueue     = "emergency_registration_queue"
 	droneUpdatesQueue     = "drone_updates_queue" // Cola que el monitoreo consume
 	assignmentPort        = ":50051"
-	dronesServiceAddress  = "10.10.28.19:50053" // Dirección del servicio de Drones
+	dronesServiceAddress  = "localhost:50053" // Dirección del servicio de Drones
 )
 
 // Drone representa la estructura de un dron en la base de datos
@@ -100,7 +102,7 @@ func (s *AssignmentService) SendEmergencies(ctx context.Context, req *pb.Emergen
 
 // NotifyEmergencyExtinguished recibe una notificación del servicio de Drones
 // de que una emergencia ha sido extinguida.
-func (s *AssignmentService) NotifyEmergencyExtinguished(ctx context.Context, req *pb.EmergencyExtinguishedNotification) (*pb.Empty, error) {
+func (s *AssignmentService) NotifyEmergencyExtinguished(ctx context.Context, req *pb.EmergencyExtinguishedNotification) (*emptypb.Empty, error) {
 	s.mu.Lock()
 	defer s.mu.Unlock()
 
@@ -115,7 +117,7 @@ func (s *AssignmentService) NotifyEmergencyExtinguished(ctx context.Context, req
 	} else {
 		log.Printf("Notificación de emergencia extinguida para ID %d no coincide con la emergencia actual en proceso.", req.GetEmergencyId())
 	}
-	return &pb.Empty{}, nil
+	return &emptypb.Empty{}, nil
 }
 
 // processEmergencies es una goroutine que se encarga de procesar las emergencias de la cola
