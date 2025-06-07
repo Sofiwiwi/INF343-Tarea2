@@ -15,13 +15,11 @@ import (
 
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"google.golang.org/protobuf/types/known/timestamppb"
 
 	amqp "github.com/rabbitmq/amqp091-go"
 
 	dronepb "INF343-Tarea2/proto/drones"
 	pb "INF343-Tarea2/proto/emergencia"
-	monpb "INF343-Tarea2/proto/monitoreo"
 )
 
 const (
@@ -75,17 +73,8 @@ func (s *DroneService) AssignEmergency(ctx context.Context, req *dronepb.AssignE
 		_ = s.updateDronePositionInDB(req.GetDronId(), req.GetLatitude(), req.GetLongitude())
 		_ = s.updateDroneStatusInDB(req.GetDronId(), "available")
 
-		update := &monpb.EmergencyStatusUpdate{
-			EmergencyId:   req.GetEmergencyId(),
-			EmergencyName: req.GetEmergencyName(),
-			Status:        "Extinguido",
-			DronId:        req.GetDronId(),
-			Latitude:      req.GetLatitude(),
-			Longitude:     req.GetLongitude(),
-			Magnitude:     req.GetMagnitude(),
-			Timestamp:     timestamppb.Now(),
-		}
-		_ = s.publishStatusToRabbitMQ(update, registrationQueue)
+		mensaje := formatUpdateMessage("Extinguido", req.GetEmergencyName(), req.GetDronId(), req.GetLatitude(), req.GetLongitude(), req.GetMagnitude())
+		_ = s.publishStyledMessageToRabbitMQ(mensaje, registrationQueue)
 
 		conn, err := grpc.Dial(assignmentServiceAddress, grpc.WithTransportCredentials(insecure.NewCredentials()))
 		if err != nil {
@@ -116,29 +105,14 @@ func (s *DroneService) simulateMovement(id int64, name, dronID string, lat1, lon
 		curLon := lon1 + (lon2-lon1)*frac
 
 		if i%(steps/5) == 0 || i == steps-1 {
-			update := &monpb.EmergencyStatusUpdate{
-				EmergencyId:   id,
-				EmergencyName: name,
-				Status:        "En camino",
-				DronId:        dronID,
-				Latitude:      curLat,
-				Longitude:     curLon,
-				Timestamp:     timestamppb.Now(),
-			}
-			_ = s.publishStatusToRabbitMQ(update, monitoringQueue)
+			mensaje := formatUpdateMessage("En camino", name, dronID, curLat, curLon, 0)
+			_ = s.publishStyledMessageToRabbitMQ(mensaje, monitoringQueue)
 		}
 		time.Sleep(delay / time.Duration(steps))
 	}
 
-	_ = s.publishStatusToRabbitMQ(&monpb.EmergencyStatusUpdate{
-		EmergencyId:   id,
-		EmergencyName: name,
-		Status:        "Llegado",
-		DronId:        dronID,
-		Latitude:      lat2,
-		Longitude:     lon2,
-		Timestamp:     timestamppb.Now(),
-	}, monitoringQueue)
+	mensaje := formatUpdateMessage("Llegado", name, dronID, lat2, lon2, 0)
+	_ = s.publishStyledMessageToRabbitMQ(mensaje, monitoringQueue)
 }
 
 func (s *DroneService) simulateExtinguishing(id int64, name, dronID string, mag int32, lat, lon float64) {
@@ -147,17 +121,8 @@ func (s *DroneService) simulateExtinguishing(id int64, name, dronID string, mag 
 
 	for i := 0; i < steps; i++ {
 		if i%(steps/2) == 0 || i == steps-1 {
-			update := &monpb.EmergencyStatusUpdate{
-				EmergencyId:   id,
-				EmergencyName: name,
-				Status:        "Apagando",
-				DronId:        dronID,
-				Latitude:      lat,
-				Longitude:     lon,
-				Magnitude:     mag,
-				Timestamp:     timestamppb.Now(),
-			}
-			_ = s.publishStatusToRabbitMQ(update, monitoringQueue)
+			mensaje := formatUpdateMessage("Apagando", name, dronID, lat, lon, mag)
+			_ = s.publishStyledMessageToRabbitMQ(mensaje, monitoringQueue)
 		}
 		time.Sleep(delay / time.Duration(steps))
 	}
@@ -167,7 +132,22 @@ func calculateDistance(x1, y1, x2, y2 float64) float64 {
 	return math.Hypot(x1-x2, y1-y2)
 }
 
-func (s *DroneService) publishStatusToRabbitMQ(update *monpb.EmergencyStatusUpdate, queue string) error {
+func formatUpdateMessage(etapa, emergencia, dron string, lat, lon float64, mag int32) string {
+	switch etapa {
+	case "En camino":
+		return fmt.Sprintf("Dron %s en camino a emergencia %s...", dron, emergencia)
+	case "Llegado":
+		return fmt.Sprintf("Dron %s llegó al lugar de la emergencia %s", dron, emergencia)
+	case "Apagando":
+		return fmt.Sprintf("Dron %s apagando emergencia %s...", dron, emergencia)
+	case "Extinguido":
+		return fmt.Sprintf("Incendio %s ha sido extinguido por %s", emergencia, dron)
+	default:
+		return fmt.Sprintf("Estado desconocido de %s", emergencia)
+	}
+}
+
+func (s *DroneService) publishStyledMessageToRabbitMQ(message, queue string) error {
 	ch, err := s.rabbitMQConn.Channel()
 	if err != nil {
 		return err
@@ -179,7 +159,7 @@ func (s *DroneService) publishStatusToRabbitMQ(update *monpb.EmergencyStatusUpda
 		return err
 	}
 
-	body, err := json.Marshal(update)
+	body, err := json.Marshal(map[string]string{"mensaje": message})
 	if err != nil {
 		return err
 	}
