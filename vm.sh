@@ -36,8 +36,6 @@ case "$VM" in
     echo "🖥️ VM3: Ejecutando Drones"
     go run drones.go
     ;;
-  4)
-
   *)
     echo "⚠️ Número de VM no reconocido: $VM"
     echo "Opciones válidas:"
