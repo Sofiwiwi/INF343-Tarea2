@@ -27,7 +27,7 @@ import (
 )
 
 const (
-	mongoDBURI            = "mongodb://localhost:27017"
+	mongoDBURI            = "mongodb://10.10.28.18:27017"
 	dbName                = "emergencies_db"
 	dronesCollection      = "drones"
 	emergenciesCollection = "emergencies"
@@ -35,7 +35,7 @@ const (
 	registrationQueue     = "emergency_registration_queue"
 	droneUpdatesQueue     = "drone_updates_queue" // Cola que el monitoreo consume
 	assignmentPort        = ":50051"
-	dronesServiceAddress  = "localhost:50053" // Dirección del servicio de Drones
+	dronesServiceAddress  = "10.10.28.19:50053" // Dirección del servicio de Drones
 )
 
 // Drone representa la estructura de un dron en la base de datos

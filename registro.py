@@ -10,7 +10,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 # --- Configuración de Conexión ---
 RABBITMQURL= "amqp://admin123:admin123@10.10.28.18:5672/"
-MONGO_DB_URI = 'mongodb://localhost:27017/'
+MONGO_DB_URI = 'mongodb://10.10.28.18:27017/'
 DB_NAME = 'emergencies_db'
 EMERGENCIES_COLLECTION = 'emergencies'
 REGISTRATION_QUEUE = 'emergency_registration_queue' # Cola de donde recibe mensajes de asignación/drones
