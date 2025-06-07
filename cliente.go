@@ -101,12 +101,13 @@ func main() {
 			fmt.Println("Dron en camino a emergencia...")
 		case "Apagando":
 			fmt.Println("Dron apagando emergencia...")
-		case "Extinguido":
-			fmt.Printf("Incendio %s ha sido extinguido por %s\n",
-				update.GetEmergencyName(), update.GetDronId())
+		case "Llegado":
+			fmt.Println("Dron ha llegado a la ubicación de la emergencia.")
 		default:
 			fmt.Printf("Estado desconocido: %s\n", update.GetStatus())
 		}
+		fmt.Printf("Incendio %s ha sido extinguido por %s\n",
+			update.GetEmergencyName(), update.GetDronId())
 	}
 }
 
