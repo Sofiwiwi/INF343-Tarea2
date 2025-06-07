@@ -106,8 +106,7 @@ func main() {
 		default:
 			fmt.Printf("Estado desconocido: %s\n", update.GetStatus())
 		}
-		fmt.Printf("Incendio %s ha sido extinguido por %s\n",
-			update.GetEmergencyName(), update.GetDronId())
+
 	}
 }
 
