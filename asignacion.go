@@ -31,7 +31,7 @@ const (
 	dbName                = "emergencies_db"
 	dronesCollection      = "drones"
 	emergenciesCollection = "emergencies"
-	rabbitMQURL           = "amqp://guest:guest@localhost:5672/"
+	rabbitMQURL           = "amqp://admin123:admin123@10.10.28.18:5672/"
 	registrationQueue     = "emergency_registration_queue"
 	droneUpdatesQueue     = "drone_updates_queue" // Cola que el monitoreo consume
 	assignmentPort        = ":50051"

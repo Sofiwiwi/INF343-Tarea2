@@ -30,7 +30,7 @@ const (
 	dronesCollection         = "drones"
 	assignmentServiceAddress = "10.10.28.18:50051"
 	dronesPort               = ":50053"
-	rabbitMQURL              = "amqp://guest:guest@10.10.28.18:5672/"
+	rabbitMQURL              = "amqp://admin123:admin123@10.10.28.18:5672/"
 	monitoringQueue          = "drone_updates_queue"
 	registrationQueue        = "emergency_registration_queue"
 )
