@@ -191,8 +191,8 @@ func main() {
 	log.Printf("Monitoring gRPC service listening on %s", grpcPort)
 
 	// RabbitMQ configuration
-	rabbitMQURL := "amqp://guest:guest@localhost:5672/" // Default URL, adjust if different
-	queueName := "drone_updates_queue"                  // Queue name for drone updates
+	rabbitMQURL := "amqp://admin123:admin123@10.10.28.18:5672/" // Default URL, adjust if different
+	queueName := "drone_updates_queue"                          // Queue name for drone updates
 
 	// Start the RabbitMQ consumer in a separate goroutine
 	go monitoringService.consumeRabbitMQMessages(rabbitMQURL, queueName)

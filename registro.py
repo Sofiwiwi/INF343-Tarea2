@@ -143,7 +143,7 @@ def callback(ch, method, properties, body, db):
 
 def main():
     db = connect_to_mongodb(MONGO_DB_URI, DB_NAME)
-    connection = connect_to_rabbitmq(RABBITMQ_URL)
+    connection = connect_to_rabbitmq(RABBITMQURL)
 
     channel = connection.channel()
     channel.queue_declare(queue=REGISTRATION_QUEUE, durable=False) # La cola no necesita ser durable por ahora
